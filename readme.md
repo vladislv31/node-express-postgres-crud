@@ -1,6 +1,6 @@
 ## CRUD API
 
-### Config for Dabase
+### Config for Database
 
 File: config/db.config.js
 
