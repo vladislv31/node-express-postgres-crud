@@ -24,6 +24,16 @@ class UsersService {
             return false
         }
     }
+
+    async deleteUser(username) {
+        const check = await this.getUser(username)
+        if (check) {
+            await db.query('DELETE FROM users WHERE username = $1', [username])
+            return true
+        } else {
+            return false
+        }
+    }
 }
 
 module.exports = new UsersService()

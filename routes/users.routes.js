@@ -4,10 +4,8 @@ const UserController = require('../controllers/users.controller')
 
 router.route('/')
     .get(UserController.getUsers)
-    .post(UserController.craeteUser)
-    .delete((req, res) => {
-        res.send('Deleting all users')
-    })
+    .post(UserController.createUser)
+    .delete(UserController.deleteUser)
 
 router.route('/:id')
     .get((req, res) => {
