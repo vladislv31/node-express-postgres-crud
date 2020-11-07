@@ -1,10 +1,9 @@
 const express = require('express')
 const router = express.Router()
+const UserController = require('../controllers/users.controller')
 
 router.route('/')
-    .get((req, res) => {
-        res.send('Getting all users')
-    })
+    .get(UserController.getUsers)
     .post((req, res) => {
         res.send('Creating new user')
     })
