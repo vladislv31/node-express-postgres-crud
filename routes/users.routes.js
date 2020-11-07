@@ -4,9 +4,7 @@ const UserController = require('../controllers/users.controller')
 
 router.route('/')
     .get(UserController.getUsers)
-    .post((req, res) => {
-        res.send('Creating new user')
-    })
+    .post(UserController.craeteUser)
     .delete((req, res) => {
         res.send('Deleting all users')
     })
