@@ -7,8 +7,22 @@ class UsersService {
     }
 
     async createUser(username) {
-        const user = await db.query('INSERT INTO users(username) VALUES($1) RETURNING *', [username])
-        return user.rows[0]
+        const check = await this.getUser(username)
+        if (check) {
+            return false
+        } else {
+            const user = await db.query('INSERT INTO users(username) VALUES($1) RETURNING *', [username])
+            return user.rows[0]
+        }
+    }
+
+    async getUser(username) {
+        const user = await db.query('SELECT * FROM users WHERE username = $1', [username])
+        if (user.rows.length > 0) {
+            return user.rows[0]
+        } else {
+            return false
+        }
     }
 }
 
