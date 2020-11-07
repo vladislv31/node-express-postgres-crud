@@ -1,5 +1,6 @@
 const express = require('express')
 const morgan = require('morgan')
+const routes = require('./routes')
 
 const PORT = 8000
 const app = express()
@@ -7,9 +8,7 @@ const app = express()
 app.use(morgan('tiny'))
 
 
-app.get('/', (res, req) => {
-    req.json({message: 'test'})
-})
+app.use('/api', routes)
 
 
 app.listen(PORT, () => {
