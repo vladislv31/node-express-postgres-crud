@@ -1,4 +1,5 @@
 const db = require('../core/db.core')
+db.connect()
 
 async function getUsers() {
     const users = await db.query('SELECT * FROM users')

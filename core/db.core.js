@@ -7,6 +7,5 @@ const client = new Client({
     host: config.host,
     database: config.db,
 })
-client.connect()
 
 module.exports = client
