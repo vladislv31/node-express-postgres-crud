@@ -17,7 +17,9 @@ module.exports = {
 }
 ```
 
-- Import database **db.sql**
+- Init database: ``npm run db init````
+
+    - You also can add some data: ``npm run db seed users````
 
 - Start server:
     - ```npm run start``` - for production
