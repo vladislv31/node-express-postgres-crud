@@ -6,7 +6,7 @@ async function getUsers() {
 }
 
 async function createUser(username) {
-    const check = await this.checkUsername(username)
+    const check = await checkUsername(username)
     if (check) {
         return false
     } else {
@@ -30,12 +30,11 @@ async function getUserByID(id) {
 
 async function updateUserByID(id, username) {
     try {
-        const check = await this.checkUsername(username)
+        const check = await checkUsername(username)
         if (check) {
             return false
         } else {
             const user = await db.query('UPDATE users SET username = $1 WHERE id = $2 RETURNING *', [username, id])
-            console.log(user)
             return user.rows[0]
         }
     } catch (err) {
@@ -61,4 +60,4 @@ async function checkUsername(username) {
     }
 }
 
-module.exports = {getUsers, createUser, getUserByID, updateUserByID, deleteUserByID, checkUsername}
+module.exports = {getUsers, createUser, getUserByID, updateUserByID, deleteUserByID}
