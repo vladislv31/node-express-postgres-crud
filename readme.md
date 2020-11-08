@@ -17,6 +17,8 @@ module.exports = {
 }
 ```
 
+- Import database **db.sql**
+
 - Start server:
     - ```npm run start``` - for production
     - ```npm run dev``` - for development
