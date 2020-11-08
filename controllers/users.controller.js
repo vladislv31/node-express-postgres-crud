@@ -28,6 +28,20 @@ class UserController {
             return res.status(400).json({message: 'Cant find user'})
         }
     }
+
+    async updateUserByID(req, res) {
+        const user = await UsersService.updateUserByID(req.params.id, req.body.username)
+        if (user) {
+            return res.status(200).json(user)
+        } else {
+            return res.status(400).json({message: 'Cant update user'})
+        }
+    }
+
+    async deleteUserByID(req, res) {
+        await UsersService.deleteUserByID(req.params.id)
+        return res.status(200).json({message: 'User was deleted'})
+    }
 }
 
 module.exports = new UserController()

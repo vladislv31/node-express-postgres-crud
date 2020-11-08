@@ -17,10 +17,38 @@ class UsersService {
     }
 
     async getUserByID(id) {
-        const users = await db.query('SELECT * FROM users WHERE id = $1', [id])
-        if (users.rows.length > 0) {
-            return users.rows
-        } else {
+        try {
+            const users = await db.query('SELECT * FROM users WHERE id = $1', [id])
+            if (users.rows.length > 0) {
+                return users.rows[0]
+            } else {
+                return false
+            }
+        } catch (err) {
+            return false
+        }
+    }
+
+    async updateUserByID(id, username) {
+        try {
+            const check = await this.checkUsername(username)
+            if (check) {
+                return false
+            } else {
+                const user = await db.query('UPDATE users SET username = $1 WHERE id = $2 RETURNING *', [username, id])
+                console.log(user)
+                return user.rows[0]
+            }
+        } catch (err) {
+            return false
+        }
+    }
+
+    async deleteUserByID(id) {
+        try {
+            await db.query('DELETE FROM users WHERE id = $1', [id])
+            return true
+        } catch (err) {
             return false
         }
     }

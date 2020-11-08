@@ -8,11 +8,7 @@ router.route('/')
 
 router.route('/:id')
     .get(UserController.getUserByID)
-    .put((req, res) => {
-        res.send('Updating user with id ' + req.params.id)
-    })
-    .delete((req, res) => {
-        res.send('Deleting user with id ' + req.params.id)
-    })
+    .put(UserController.updateUserByID)
+    .delete(UserController.deleteUserByID)
 
 module.exports = router
