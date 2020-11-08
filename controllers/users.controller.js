@@ -19,17 +19,13 @@ class UserController {
             return res.status(400).json({message: 'Bad request'})
         }
     }
-    
-    async deleteUser(req, res) {
-        if (req.body.username) {
-            const delete_user = await UsersService.deleteUser(req.body.username)
-            if (delete_user) {
-                return res.status(200).json({message: 'User was deleted.'})
-            } else {
-                return res.status(400).json({message: 'User is not found.'})    
-            }
+
+    async getUserByID(req, res) {
+        const user = await UsersService.getUserByID(req.params.id)
+        if (user) {
+            return res.status(200).json(user)
         } else {
-            return res.status(400).json({message: 'Bad request'})
+            return res.status(400).json({message: 'Cant find user'})
         }
     }
 }

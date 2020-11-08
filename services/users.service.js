@@ -7,7 +7,7 @@ class UsersService {
     }
 
     async createUser(username) {
-        const check = await this.getUser(username)
+        const check = await this.checkUsername(username)
         if (check) {
             return false
         } else {
@@ -16,20 +16,19 @@ class UsersService {
         }
     }
 
-    async getUser(username) {
-        const user = await db.query('SELECT * FROM users WHERE username = $1', [username])
-        if (user.rows.length > 0) {
-            return user.rows[0]
+    async getUserByID(id) {
+        const users = await db.query('SELECT * FROM users WHERE id = $1', [id])
+        if (users.rows.length > 0) {
+            return users.rows
         } else {
             return false
         }
     }
 
-    async deleteUser(username) {
-        const check = await this.getUser(username)
-        if (check) {
-            await db.query('DELETE FROM users WHERE username = $1', [username])
-            return true
+    async checkUsername(username) {
+        const user = await db.query('SELECT * FROM users WHERE username = $1', [username])
+        if (user.rows.length > 0) {
+            return user.rows[0]
         } else {
             return false
         }

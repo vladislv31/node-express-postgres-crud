@@ -5,12 +5,9 @@ const UserController = require('../controllers/users.controller')
 router.route('/')
     .get(UserController.getUsers)
     .post(UserController.createUser)
-    .delete(UserController.deleteUser)
 
 router.route('/:id')
-    .get((req, res) => {
-        res.send('Getting user with id ' + req.params.id)
-    })
+    .get(UserController.getUserByID)
     .put((req, res) => {
         res.send('Updating user with id ' + req.params.id)
     })
