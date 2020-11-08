@@ -1,6 +1,10 @@
 ## CRUD API
 
-### Config for Database
+### Usage
+
+- **Clone repository**
+
+- **Create config for database:**
 
 File: config/db.config.js
 
@@ -12,3 +16,7 @@ module.exports = {
     db: ''    
 }
 ```
+
+- Start server:
+    - ```npm run start``` - for production
+    - ```npm run dev``` - for development
