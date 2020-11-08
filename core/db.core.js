@@ -5,7 +5,7 @@ const client = new Client({
     user: config.user,
     password: config.password,
     host: config.host,
-    database: config.database,
+    database: config.db,
 })
 client.connect()
 
