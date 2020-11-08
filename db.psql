@@ -21,79 +21,6 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: fishes; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.fishes (
-    id integer NOT NULL,
-    name text,
-    type text
-);
-
-
-ALTER TABLE public.fishes OWNER TO postgres;
-
---
--- Name: fishes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.fishes_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.fishes_id_seq OWNER TO postgres;
-
---
--- Name: fishes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.fishes_id_seq OWNED BY public.fishes.id;
-
-
---
--- Name: tutorials; Type: TABLE; Schema: public; Owner: eliot
---
-
-CREATE TABLE public.tutorials (
-    id integer NOT NULL,
-    title character varying(255),
-    description character varying(255),
-    published boolean,
-    "createdAt" timestamp with time zone NOT NULL,
-    "updatedAt" timestamp with time zone NOT NULL
-);
-
-
-ALTER TABLE public.tutorials OWNER TO eliot;
-
---
--- Name: tutorials_id_seq; Type: SEQUENCE; Schema: public; Owner: eliot
---
-
-CREATE SEQUENCE public.tutorials_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.tutorials_id_seq OWNER TO eliot;
-
---
--- Name: tutorials_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: eliot
---
-
-ALTER SEQUENCE public.tutorials_id_seq OWNED BY public.tutorials.id;
-
-
---
 -- Name: users; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -128,43 +55,10 @@ ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
--- Name: fishes id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.fishes ALTER COLUMN id SET DEFAULT nextval('public.fishes_id_seq'::regclass);
-
-
---
--- Name: tutorials id; Type: DEFAULT; Schema: public; Owner: eliot
---
-
-ALTER TABLE ONLY public.tutorials ALTER COLUMN id SET DEFAULT nextval('public.tutorials_id_seq'::regclass);
-
-
---
 -- Name: users id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
-
-
---
--- Data for Name: fishes; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.fishes (id, name, type) FROM stdin;
-2	nemo	orange_fish
-\.
-
-
---
--- Data for Name: tutorials; Type: TABLE DATA; Schema: public; Owner: eliot
---
-
-COPY public.tutorials (id, title, description, published, "createdAt", "updatedAt") FROM stdin;
-1	NOde TUT#3	descr	f	2020-11-07 15:22:22.713+02	2020-11-07 15:22:22.713+02
-2	NOde TUT#4	descr	f	2020-11-07 15:23:09.649+02	2020-11-07 15:23:09.649+02
-\.
 
 
 --
@@ -174,44 +68,15 @@ COPY public.tutorials (id, title, description, published, "createdAt", "updatedA
 COPY public.users (id, username) FROM stdin;
 8	peter
 9	vasya
+11	denis
 \.
-
-
---
--- Name: fishes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.fishes_id_seq', 2, true);
-
-
---
--- Name: tutorials_id_seq; Type: SEQUENCE SET; Schema: public; Owner: eliot
---
-
-SELECT pg_catalog.setval('public.tutorials_id_seq', 2, true);
 
 
 --
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 10, true);
-
-
---
--- Name: fishes fishes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.fishes
-    ADD CONSTRAINT fishes_pkey PRIMARY KEY (id);
-
-
---
--- Name: tutorials tutorials_pkey; Type: CONSTRAINT; Schema: public; Owner: eliot
---
-
-ALTER TABLE ONLY public.tutorials
-    ADD CONSTRAINT tutorials_pkey PRIMARY KEY (id);
+SELECT pg_catalog.setval('public.users_id_seq', 13, true);
 
 
 --
